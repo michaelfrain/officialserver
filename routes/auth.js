@@ -9,15 +9,25 @@ var isAuthenticated = function (req, res, next) {
 }
 
 module.exports = function(passport) {
-    router.post('/login', passport.authenticate('login', {
+    router.get('/', function(req, res) {
+	res.render('/', { message : req.flash('message') });
+    });
+    
+    router.post('/', passport.authenticate('login', {
 	successRedirect: '/',
-	failureRedirect: '/',
+	failureRedirect: '/register',
 	failureFlash : true
     }));
 
-    router.get('/', function(req, res) {
-	res.render('index', { message : req.flash('message') });
+    router.get('/register', function(req, res) {
+	res.render('/', { message : req.flash('message') });
     });
+
+    router.post('/register', passport.authenticate('signup', {
+	successRedirect: '/',
+	failureRedirect: '/',
+	failureFlash: true
+    }));
 
     return router;
 }
