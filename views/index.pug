@@ -13,14 +13,15 @@ html
     form.form-signin()
      h2.form-signin-heading Welcome to the SCIAC Officials Portal
      label.sr-only(for='inputEmail') E-mail address
-     input#inputEmail.form-control(type='email', placeholder='E-mail address', name='username', required='', autofocus='')
+     input#inputEmail.form-control(type='email', placeholder='E-mail address', name='username', autofocus='')
      label.sr-only(for='inputPassword') Password
-     input#inputPassword.form-control(type='password', placeholder='Password', name='password', required='')
+     input#inputPassword.form-control(type='password', placeholder='Password', name='password')
      .checkbox
       label
        input(type='checkbox', value='remember-me')
        p Remember me
      button.btn.btn-lg.btn-primary.btn-block(type='submit' formaction='/login' formmethod='post') Sign in
+    form.form-signin()
      button.btn.btn-lg.btn-primary.btn-block(type='submit' formaction='/register' formmethod='get') Register
    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')

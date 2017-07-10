@@ -3,7 +3,7 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function(passport) {
-    passport.use('signup', new LocalStrategy({
+    passport.use('register', new LocalStrategy({
 	passReqToCallback: true
     },
 					     function(req, username, password, done) {
@@ -22,7 +22,7 @@ module.exports = function(passport) {
 
 							 newUser.username = username;
 							 newUser.password = createHash(password);
-							 newUser.email = req.param('email');
+							 newUser.email = username;
 							 newUser.firstName = req.param('firstName');
 							 newUser.lastName = req.param('lastName');
 
@@ -42,6 +42,6 @@ module.exports = function(passport) {
 		);
 
     var createHash = function(password) {
-	return bCrypt.hashSync(poassword, bCrypt.genSaltSync(10), null);
+	return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
     }
 }

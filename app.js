@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 mongoose.connect(dbConfig.url);
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var thankyou = require('./routes/thankyou');
 
 var app = express();
 
@@ -39,11 +39,12 @@ app.use(flash());
 var initPassport = require('./passport/init');
 initPassport(passport);
 
-var login = require('./routes/auth')(passport);
+var login = require('./routes/login')(passport);
+var register = require('./routes/register')(passport);
 app.use('/', index);
 app.use('/login', login);
-app.use('/users', users);
-app.use('/register', login);
+app.use('/register', register);
+app.use('/thankyou', thankyou);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
