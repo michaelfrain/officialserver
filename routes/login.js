@@ -14,10 +14,10 @@ module.exports = function(passport) {
     });
     
     router.post('/', passport.authenticate('login', {
-	successRedirect: '/',
+	successRedirect: '/home',
 	failureRedirect: '/register',
 	failureFlash : true
     }));
-
+    
     return router;
 }

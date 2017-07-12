@@ -1,6 +1,7 @@
 var login = require('./login');
 var register = require('./register');
 var User = require('../models/user');
+var protect = require('./protected');
 
 module.exports = function(passport) {
     passport.serializeUser(function(user, done) {
@@ -17,4 +18,5 @@ module.exports = function(passport) {
 
     login(passport);
     register(passport);
+    protect(passport);
 }
