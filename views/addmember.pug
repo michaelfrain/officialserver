@@ -40,5 +40,19 @@ html
         a(href='#') Add new entry
        li
         a(href='#') Edit current entry
+   .container
+    form.form-addmember()
+     h2.form-addmember-heading Add new member
+     label.sr-only(for='inputFirstName') First name
+     input#inputFirstName.form-control(type='text', placeholder='First name', required='', autofocus='')
+     label.sr-only(for='inputLastName') Last name
+     input#inputLastName.form-control(type='text', placeholder='Last name', required='')
+     label.sr-only(for='inputEmail') Email address
+     input#inputEmail.form-control(type='email', placeholder='Email address', required='')
+     select.form-control(name='Member type')
+      option(value='Admin') Admin
+      option(value='Crew chief') Crew chief
+      option(value='Official') Official
+      option(value='Guest') Guest
      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
