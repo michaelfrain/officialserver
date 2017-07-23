@@ -12,8 +12,8 @@ module.exports = function(passport) {
     }
     
     router.get('/', isAuthenticated, function(req, res) {
-        res.render('home', { message: req.flash('message') });
+        res.render('editmembers', { message: req.flash('message') });
     });
-
+    
     return router;
 }

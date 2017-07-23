@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user');
 
 module.exports = function(passport) {
     var isAuthenticated = function(req, res, next) {
@@ -12,8 +13,14 @@ module.exports = function(passport) {
     }
     
     router.get('/', isAuthenticated, function(req, res) {
-        res.render('home', { message: req.flash('message') });
+        User.find(function (err, users) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                res.send(users);
+            }
+        })
     });
-
+    
     return router;
 }
