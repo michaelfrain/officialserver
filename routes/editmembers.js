@@ -14,10 +14,10 @@ module.exports = function(passport) {
     
     router.get('/', isAuthenticated, function(req, res) {
         User.find({}, function(err, users) {
-            res.render('editmembers', { message: req.flash('message'),
-                                        users: users});
+            res.render('editmembers', { message: req.flash('message')}, function(err, html) {
+                res.json(users);
+            });
         });
-        
     });
     
     return router;
