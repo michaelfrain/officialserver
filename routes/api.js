@@ -13,13 +13,22 @@ module.exports = function(passport) {
             })
     }
     
-    router.get('/editmembers', isAuthenticated, function(req, res) {
+    var isAdmin = function(req, res, next) {
+        if (req.user.role == 1)
+            return next();
+        else
+            return res.status(401).json({
+                error: 'User must be admin to perform this function.'
+            })
+    }
+    
+    router.get('/editmembers', isAdmin, function(req, res) {
         User.find({}, function(err, users) {
             res.json(users);
         });
     });
     
-    router.post('/addmember', isAuthenticated, function(req, res, next) {
+    router.post('/addmember', isAdmin, function(req, res, next) {
         User.findOne({ 'username' : req.param('username') }, function(err, user) {
              if (err) {
                  console.log('Error in sign up: ' + err);
