@@ -10,9 +10,6 @@ var mongoose = require('mongoose');
 
 mongoose.connect(dbConfig.url);
 
-var index = require('./routes/index');
-var thankyou = require('./routes/thankyou');
-
 var app = express();
 
 // view engine setup
@@ -39,11 +36,13 @@ app.use(flash());
 var initPassport = require('./passport/init');
 initPassport(passport);
 
+var index = require('./routes/index');
+var thankyou = require('./routes/thankyou');
 var login = require('./routes/login')(passport);
 var register = require('./routes/register')(passport);
 var home = require('./routes/home')(passport);
 var addmember = require('./routes/addmember')(passport);
-var editmembers = require('./routes/editmembers');
+var editmembers = require('./routes/editmembers')(passport);
 app.use('/', index);
 app.use('/login', login);
 app.use('/register', register);

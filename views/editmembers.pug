@@ -8,6 +8,9 @@ html
    meta(name='author', content='Michael Frain')
    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
    link(rel='stylesheet', href='./stylesheets/addmember.css')
+   script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+   script(src='./js/editmembers.js')
   body
    nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
@@ -40,3 +43,6 @@ html
         a(href='/addmember') Add new member
        li
         a(href='/editmembers') Edit current members
+   .container
+    form.form-addmember() 
+     select.form-control(name='Member type' id='members')
