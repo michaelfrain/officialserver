@@ -7,7 +7,8 @@ html
    meta(name='description', content='SCIAC Portal dashboard')
    meta(name='author', content='Michael Frain')
    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
-   link(rel='stylesheet', href='./stylesheets/addmember.css')
+   link(rel='stylesheet', href='./stylesheets/boilerplate.css')
+   link(rel='stylesheet', href='./stylesheets/editmembers.css')
    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
    script(src='./js/listmembers.js')
@@ -24,7 +25,7 @@ html
      #navbar.navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
        li
-        a(href='#') Dashboard
+        a(href='/home') Dashboard
        li
         a(href='#') Settings
        li
@@ -38,13 +39,20 @@ html
      .col-sm-3.col-md-2.sidebar
       ul.nav.nav-sidebar
        li
-        a(href='#') Overview
+        a(href='/home') Overview
        li
         a(href='/addmember') Add new member
        li
         a(href='/editmembers') Edit current members
+      ul.nav.nav-sidebar
+       li
+        a(href='#') Add games to schedule
+       li
+        a(href='#') View your schedule
+       li
+        a(href='#') View league schedule  
    .container
     h2 Select a member to edit
-    form.form-addmember() 
+    form.form-editmembers() 
      select.form-control(name='Member type' id='members')
       option(value='')

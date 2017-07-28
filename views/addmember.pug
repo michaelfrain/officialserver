@@ -7,6 +7,7 @@ html
    meta(name='description', content='SCIAC Portal dashboard')
    meta(name='author', content='Michael Frain')
    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+   link(rel='stylesheet', href='./stylesheets/boilerplate.css')
    link(rel='stylesheet', href='./stylesheets/addmember.css')
   body
    nav.navbar.navbar-inverse.navbar-fixed-top
@@ -21,7 +22,7 @@ html
      #navbar.navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
        li
-        a(href='#') Dashboard
+        a(href='/home') Dashboard
        li
         a(href='#') Settings
        li
@@ -35,11 +36,18 @@ html
      .col-sm-3.col-md-2.sidebar
       ul.nav.nav-sidebar
        li
-        a(href='#') Overview
+        a(href='/home') Overview
        li
         a(href='/addmember') Add new member
        li
         a(href='/editmembers') Edit current members
+      ul.nav.nav-sidebar
+       li
+        a(href='#') Add games to schedule
+       li
+        a(href='#') View your schedule
+       li
+        a(href='#') View league schedule
    .container
     form.form-addmember(action='addmember', method='post')
      h2.form-addmember-heading Add new member
@@ -49,11 +57,11 @@ html
      input#inputLastName.form-control(type='text', placeholder='Last name', name='lastName', required='')
      label.sr-only(for='inputEmail') Email address
      input#inputEmail.form-control(type='email', placeholder='Email address', name='username', required='')
-     select.form-control(name='Member type')
-      option(value='Admin') Admin
-      option(value='Crew chief') Crew chief
-      option(value='Official') Official
-      option(value='Guest') Guest
+     select.form-control(name='role')
+      option(value=1) Admin
+      option(value=2) Crew chief
+      option(value=3) Official
+      option(value=0) Guest
      button.btn.btn-lg.btn-primary.btn-block(type='submit') Add member
      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')

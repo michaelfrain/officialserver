@@ -21,7 +21,7 @@ html
      #navbar.navbar-collapse.collapse
       ul.nav.navbar-nav.navbar-right
        li
-        a(href='#') Dashboard
+        a(href='/home') Dashboard
        li
         a(href='#') Settings
        li
@@ -35,11 +35,18 @@ html
      .col-sm-3.col-md-2.sidebar
       ul.nav.nav-sidebar
        li
-        a(href='#') Overview
+        a(href='/home') Overview
        li
         a(href='/addmember') Add new member
        li
         a(href='/editmembers') Edit current members
+      ul.nav.nav-sidebar
+       li
+        a(href='#') Add games to schedule
+       li
+        a(href='#') View your schedule
+       li
+        a(href='#') View league schedule
     .col-0sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
      h1.page-header Dashboard
      h2.sub-header Upcoming games
