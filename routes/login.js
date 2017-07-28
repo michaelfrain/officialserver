@@ -13,11 +13,5 @@ module.exports = function(passport) {
         res.render('login', { message : req.flash('message') });
     });
     
-    router.post('/', passport.authenticate('login', {
-        successRedirect: '/home',
-        failureRedirect: '/register',
-        failureFlash : true
-    }));
-    
     return router;
 }
