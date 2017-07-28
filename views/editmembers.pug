@@ -10,7 +10,7 @@ html
    link(rel='stylesheet', href='./stylesheets/addmember.css')
    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-   script(src='./js/editmembers.js')
+   script(src='./js/listmembers.js')
   body
    nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
@@ -44,5 +44,7 @@ html
        li
         a(href='/editmembers') Edit current members
    .container
+    h2 Select a member to edit
     form.form-addmember() 
      select.form-control(name='Member type' id='members')
+      option(value='')

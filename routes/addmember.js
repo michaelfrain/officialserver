@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function(passport) {
     var isAuthenticated = function(req, res, next) {
@@ -17,21 +18,28 @@ module.exports = function(passport) {
     });
     
     router.post('/', isAuthenticated, function(req, res, next) {
-        User.findOne({ 'username' : username }, function(err, user) {
+        User.findOne({ 'username' : req.param('username') }, function(err, user) {
              if (err) {
                  console.log('Error in sign up: ' + err);
-                 return done(err);
+                 return res.status(400).json({
+                     error: 'Request failed.'
+                 })
              }
 
              if (user) {
-                 console.log('User already exists with username: ' + username);
-                 return done(null, false, req.flash('message', 'User already exists.'));
+                 console.log('User already exists with username: ' + user.username);
+                 return res.status(400).json({
+                    error: 'Username already exists.'
+                 })
              }
              var newUser = new User();
+             var createHash = function(password) {
+                 return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+             }
 
-             newUser.username = username;
-             newUser.password = createHash(password);
-             newUser.email = username;
+             newUser.username = req.param('username');
+             newUser.password = createHash('sciac');
+             newUser.email = newUser.username;
              newUser.firstName = req.param('firstName');
              newUser.lastName = req.param('lastName');
 
@@ -40,8 +48,8 @@ module.exports = function(passport) {
                      console.log('Error saving new user: ' + err);
                      throw err;
                  }
-                 console.log('User registration successful for username: ' + username);
-                 return done(null, newUser);
+                 console.log('User registration successful for username: ' + newUser.username);
+                 res.json(newUser);
              });
         });
     });

@@ -41,18 +41,19 @@ html
        li
         a(href='/editmembers') Edit current members
    .container
-    form.form-addmember()
+    form.form-addmember(action='addmember', method='post')
      h2.form-addmember-heading Add new member
      label.sr-only(for='inputFirstName') First name
-     input#inputFirstName.form-control(type='text', placeholder='First name', required='', autofocus='')
+     input#inputFirstName.form-control(type='text', placeholder='First name', name='firstName', required='', autofocus='')
      label.sr-only(for='inputLastName') Last name
-     input#inputLastName.form-control(type='text', placeholder='Last name', required='')
+     input#inputLastName.form-control(type='text', placeholder='Last name', name='lastName', required='')
      label.sr-only(for='inputEmail') Email address
-     input#inputEmail.form-control(type='email', placeholder='Email address', required='')
+     input#inputEmail.form-control(type='email', placeholder='Email address', name='username', required='')
      select.form-control(name='Member type')
       option(value='Admin') Admin
       option(value='Crew chief') Crew chief
       option(value='Official') Official
       option(value='Guest') Guest
+     button.btn.btn-lg.btn-primary.btn-block(type='submit') Add member
      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
