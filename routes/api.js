@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var Game = require('../models/game');
 var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function(passport) {
@@ -64,6 +65,30 @@ module.exports = function(passport) {
                  res.json(newUser);
              });
         });
+    });
+    
+    router.post('/addgame', isAdmin, function(req, res, next) {
+        var newGame = new Game();
+        
+        newGame.date = req.param('date');
+        newGame.home = req.param('home');
+        newGame.visitor = req.param('visitor');
+        newGame.hScore = 0;
+        newGame.vScore = 0;
+        newGame.overtime = false;
+        newGame.totalTime = 0;
+        newGame.television = false;
+        newGame.conference = 'SCIAC';
+        newGame.officials = req.param['officials'];
+        
+        newGame.save(function(err) {
+            if (err) {
+                console.log('Error saving new game: ' + err);
+                throw err;
+            }
+            console.log('New game created for: ' + newGame.date);
+            res.json(newGame);
+        })
     });
 
     router.post('/login', passport.authenticate('login', {

@@ -8,10 +8,7 @@ html
    meta(name='author', content='Michael Frain')
    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
    link(rel='stylesheet', href='./stylesheets/boilerplate.css')
-   link(rel='stylesheet', href='./stylesheets/editmembers.css')
-   script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-   script(src='./js/listmembers.js')
+   link(rel='stylesheet', href='./stylesheets/addmember.css')
   body
    nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
@@ -50,9 +47,4 @@ html
        li
         a(href='#') View your schedule
        li
-        a(href='#') View league schedule  
-   .container
-    h2 Select a member to edit
-    form.form-editmembers() 
-     select.form-control(name='Member type' id='members')
-      option(value='')
+        a(href='#') View league schedule
