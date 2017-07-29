@@ -1,0 +1,28 @@
+.form-addgame {
+    padding: 15px;
+    margin: 0 auto;
+    display: inline;
+}
+
+.form-addgame .form-addgame-heading {
+    margin-bottom: 10px;
+}
+
+.form-addgame .form-control {
+    position: relative;
+    height: 40px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.form-addgame .form-control:focus {
+    z-index: 2;
+}
+
+.form-addgame select {
+    height: 40px;
+}

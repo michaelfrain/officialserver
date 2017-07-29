@@ -13,5 +13,5 @@ module.exports = mongoose.model('Game', {
     totalTime: Number,
     television: Boolean,
     conference: String,
-    officials: [User]
+    officials: [String]
 });
