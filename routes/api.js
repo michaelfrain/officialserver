@@ -23,6 +23,24 @@ module.exports = function(passport) {
             })
     }
     
+    router.param('userId', function(req, res, next, id) {
+        User.findOne({ 'id' : id }, function(err, user) {
+            if(err) {
+                console.log('Could not find current user object ID. Error: ' + err);
+                return res.status(400).json({
+                    error: 'userId request failed.'
+                });
+            }
+            if(user) {
+                req.user = user;
+                next();
+            }
+            return res.status(400).json({
+                error: 'No userId found.'
+            });
+        });
+    });
+    
     router.get('/editmembers', isAdmin, function(req, res) {
         User.find({}, function(err, users) {
             res.json(users);
@@ -32,6 +50,15 @@ module.exports = function(passport) {
     router.get('/games', isAuthenticated, function(req, res, next) {
         Game.find({}, function(err, games) {
             res.json(games);
+        });
+    });
+    
+    router.get('/currentuser', isAuthenticated, function(req, res, next) {
+        if (req.user) {
+            res.json(req.user);
+        }
+        res.status(404).json({
+            error: 'User not found.'
         });
     });
     
@@ -103,8 +130,26 @@ module.exports = function(passport) {
         failureFlash : true
     }));
     
+    
     router.post('/register', passport.authenticate('register'), function(req, res) {
         res.redirect('/thankyou');
+    });
+    
+    router.put('/editmember/:userId', isAdmin, function(req, res, next) {
+        req.user.firstName = req.params.firstName;
+        req.user.lastName = req.params.lastName;
+        req.user.email = req.params.username;
+        req.user.username = req.params.username;
+        req.user.role = req.params.role;
+        
+        req.user.save(function(err) {
+            if (err) {
+                console.log('Error updating new user: ' + err);
+                throw err;
+            }
+            console.log('User information updated for username: ' + req.user.username);
+            res.json(req.user);
+        });
     });
     
     return router;

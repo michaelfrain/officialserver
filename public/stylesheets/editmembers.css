@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 
-.form-addmember .form-editmembers-heading {
+.form-editmembers .form-editmembers-heading {
     margin-bottom: 10px;
 }
 
@@ -21,4 +21,8 @@
 
 .form-editmembers .form-control:focus {
     z-index: 2;
+}
+
+.form-editmembers .form-editmembers-hiddden {
+    display: none;
 }
