@@ -56,29 +56,28 @@ html
      label.sr-only(for='inputHomeTeam') Home Team
      input#inputHomeTeam.form-control(type='text', placeholder='Home team', name='home', required='')
      label.sr-only(for='inputVisitingTeam') Visiting Team
-     input#inputVisitingTeam.form-control(type='email', placeholder='Visiting team', name='visitor', required='')
+     input#inputVisitingTeam.form-control(type='text', placeholder='Visiting team', name='visitor', required='')
      .checkbox
       label
        input(type='checkbox', name='television', value='television')
        p Is televised
+     select.form-control(name='Referee' id='members')
+      option(value='') Referee
+     select.form-control(name='Umpire' id='members')
+      option(value='Umpire') Umpire
+     select.form-control(name='Head Linesman' id='members') 
+      option(value='Head Linesman') Head Linesman
+     select.form-control(name='Line Judge' id='members') 
+      option(value='Line Judge') Line Judge
+     select.form-control(name='Field Judge' id='members') 
+      option(value='Field Judge') Field Judge
+     select.form-control(name='Side Judge' id='members') 
+      option(value='Side Judge') Side Judge
+     select.form-control(name='Back Judge' id='members') 
+      option(value='Back Judge') Back Judge
+     select.form-control(name='Observer' id='members') 
+      option(value='Observer') Observer
      button.btn.btn-lg.btn-primary.btn-block(type='submit') Add game
-    form.form-addgame()
-     select.form-control(name='Referee' id='members') Referee
-      option(value='')
-     select.form-control(name='Umpire' id='members') Umpire
-      option(value='')
-     select.form-control(name='Head Linesman' id='members') Head Linesman
-      option(value='')
-     select.form-control(name='Line Judge' id='members') Line Judge
-      option(value='')
-     select.form-control(name='Field Judge' id='members') Field Judge
-      option(value='')
-     select.form-control(name='Side Judge' id='members') Side Judge
-      option(value='')
-     select.form-control(name='Back Judge' id='members') Back Judge
-      option(value='')
-     select.form-control(name='Observer' id='members') Observer
-      option(value='')
      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
      script(src='./js/editmembers.js')

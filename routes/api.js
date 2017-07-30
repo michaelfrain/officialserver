@@ -29,6 +29,12 @@ module.exports = function(passport) {
         });
     });
     
+    router.get('/games', isAuthenticated, function(req, res, next) {
+        Game.find({}, function(err, games) {
+            res.json(games);
+        });
+    });
+    
     router.post('/addmember', isAdmin, function(req, res, next) {
         User.findOne({ 'username' : req.param('username') }, function(err, user) {
              if (err) {
