@@ -56,9 +56,8 @@ html
     h2 Select a member to edit
     form.form-editmembers() 
      select.form-control(name='Member type' id='members')
-      option(value='') Select member to edit
-    form.form-editmembers.form-editmembers-hidden(action='api/editmember', method='put')
-     h2.form-editmembers-heading Add new member
+      option(value='0') Select member to edit
+    form.form-editmembers-hidden(method='put' id='editmember')
      label.sr-only(for='inputFirstName') First name
      input#inputFirstName.form-control(type='text', placeholder='First name', name='firstName', required='', autofocus='')
      label.sr-only(for='inputLastName') Last name

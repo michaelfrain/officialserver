@@ -23,6 +23,9 @@
     z-index: 2;
 }
 
-.form-editmembers .form-editmembers-hiddden {
+.form-editmembers-hidden {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
     display: none;
 }
