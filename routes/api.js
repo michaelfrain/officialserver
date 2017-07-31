@@ -24,7 +24,7 @@ module.exports = function(passport) {
     }
     
     router.param('userId', function(req, res, next, id) {
-        User.findOne({ 'id' : id }, function(err, user) {
+        User.findOne({ '_id' : id }, function(err, user) {
             if(err) {
                 console.log('Could not find current user object ID. Error: ' + err);
                 return res.status(400).json({

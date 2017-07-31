@@ -13,6 +13,7 @@ html
    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
    script(src='./js/editmembers.js')
    script(src='./js/selection.js')
+   script(src='./js/puteditedmembers.js')
   body
    nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
@@ -57,7 +58,7 @@ html
     form.form-editmembers() 
      select.form-control(name='Member type' id='members')
       option(value='0') Select member to edit
-    form.form-editmembers-hidden(method='put' id='editmember')
+    form.form-editmembers-hidden(id='memberinfo')
      label.sr-only(for='inputFirstName') First name
      input#inputFirstName.form-control(type='text', placeholder='First name', name='firstName', required='', autofocus='')
      label.sr-only(for='inputLastName') Last name
@@ -69,4 +70,4 @@ html
       option(value=2) Crew chief
       option(value=3) Official
       option(value=0) Guest
-     button.btn.btn-lg.btn-primary.btn-block(type='submit') Confirm changes
+     button.btn.btn-lg.btn-primary.btn-block(id='editmember') Confirm changes
