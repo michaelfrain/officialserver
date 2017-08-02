@@ -9,12 +9,14 @@ $(document).ready(function() {
             currentUser.firstName = newData[0].value;
             currentUser.lastName = newData[1].value;
             currentUser.email = newData[2].value;
+            currentUser.username = newData[2].value;
             currentUser.role = newData[3].value;
+            var stringUser = JSON.stringify(currentUser);
             $.ajax({
                 type: 'PUT',
                 url: '/api/editmember/'+currentUser._id,
                 contentType: 'application/json',
-                data: currentUser
+                data: stringUser
             }).then(function() {
                 
             });

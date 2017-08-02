@@ -23,24 +23,6 @@ module.exports = function(passport) {
             })
     }
     
-    router.param('userId', function(req, res, next, id) {
-        User.findOne({ '_id' : id }, function(err, user) {
-            if(err) {
-                console.log('Could not find current user object ID. Error: ' + err);
-                return res.status(400).json({
-                    error: 'userId request failed.'
-                });
-            }
-            if(user) {
-                req.user = user;
-                next();
-            }
-            return res.status(400).json({
-                error: 'No userId found.'
-            });
-        });
-    });
-    
     router.get('/editmembers', isAdmin, function(req, res) {
         User.find({}, function(err, users) {
             res.json(users);
@@ -136,19 +118,29 @@ module.exports = function(passport) {
     });
     
     router.put('/editmember/:userId', isAdmin, function(req, res, next) {
-        req.user.firstName = req.params.firstName;
-        req.user.lastName = req.params.lastName;
-        req.user.email = req.params.username;
-        req.user.username = req.params.username;
-        req.user.role = req.params.role;
-        
-        req.user.save(function(err) {
-            if (err) {
-                console.log('Error updating new user: ' + err);
-                throw err;
+        User.where({ _id: req.param('userId') }).findOne(function (err, user) {
+            if(user) {
+                req.user.firstName = req.param('firstName');
+                req.user.lastName = req.param('lastName');
+                req.user.email = req.param('username');
+                req.user.username = req.param('username');
+                req.user.role = req.param('role');
+                req.user._id = req.params.userId;
+
+                req.user.save(function(err) {
+                    if (err) {
+                        console.log('Error updating new user: ' + err);
+                        throw err;
+                    }
+                    console.log(req.param('userId') + req.params.userId);
+                    console.log('User information updated for username: ' + req.user.username);
+                    res.json(req.user);
+                });
+            } else {
+                res.status(400).json({
+                    error: 'No user found with that id.'
+                });
             }
-            console.log('User information updated for username: ' + req.user.username);
-            res.json(req.user);
         });
     });
     

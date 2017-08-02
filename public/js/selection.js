@@ -1,4 +1,4 @@
-$(document).on('change', 'select', function() {
+$(document).on('change', '#members', function() {
     var selectedOption = $('#members').val();
     if (selectedOption == 0) {
         $('form.form-editmembers-hidden').css('display','none');
@@ -11,8 +11,7 @@ $(document).on('change', 'select', function() {
             $('#inputLastName').val(changeUser.lastName);
             $('#inputEmail').val(changeUser.username);
             $('#roleEdit').val(changeUser.role);
-            $('#editmember').attr('action', 'api/editmember/' + changeUser._id);
-            $('form.form-editmembers-hidden').css('display','block');
+            $('form.form-editmembers-hidden').css('display', 'block');
         });
     }
 });
