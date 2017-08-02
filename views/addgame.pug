@@ -48,15 +48,19 @@ html
         a(href='#') View your schedule
        li
         a(href='#') View league schedule
+      ul.nav.nav-sidebar
+       li
+        a(href='/addteam') Add team to database
    .container
     form.form-addgame(action='api/addgame', method='post')
      h2.form-addgame-heading Add new game
      label.sr-only(for='inputGameDate') Date
      input#inputGameDate.form-control(type='date', placeholder='Game date', name='date', required='', autofocus='')
      label.sr-only(for='inputHomeTeam') Home Team
-     input#inputHomeTeam.form-control(type='text', placeholder='Home team', name='home', required='')
-     label.sr-only(for='inputVisitingTeam') Visiting Team
-     input#inputVisitingTeam.form-control(type='text', placeholder='Visiting team', name='visitor', required='')
+     select.form-control(name='home', id='homeTeam')
+      option(value='') Home Team
+     select.form-control(name='visitor', id='visitingTeam')
+      option(value='') Visiting Team
      .checkbox
       label
        input(type='checkbox', name='television', value='television')
@@ -81,3 +85,5 @@ html
      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
      script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
      script(src='./js/editmembers.js')
+     script(src='./js/hometeams.js')
+     script(src='./js/visitingteams.js')

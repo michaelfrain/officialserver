@@ -8,12 +8,7 @@ html
    meta(name='author', content='Michael Frain')
    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
    link(rel='stylesheet', href='./stylesheets/boilerplate.css')
-   link(rel='stylesheet', href='./stylesheets/editmembers.css')
-   script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
-   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
-   script(src='./js/editmembers.js')
-   script(src='./js/selection.js')
-   script(src='./js/puteditedmembers.js')
+   link(rel='stylesheet', href='./stylesheets/addgame.css')
   body
    nav.navbar.navbar-inverse.navbar-fixed-top
     .container-fluid
@@ -52,25 +47,22 @@ html
        li
         a(href='#') View your schedule
        li
-        a(href='#') View league schedule 
+        a(href='#') View league schedule
       ul.nav.nav-sidebar
        li
         a(href='/addteam') Add team to database
    .container
-    h2 Select a member to edit
-    form.form-editmembers() 
-     select.form-control(name='Member type' id='members')
-      option(value='0') Select member to edit
-    form.form-editmembers-hidden(id='memberinfo')
-     label.sr-only(for='inputFirstName') First name
-     input#inputFirstName.form-control(type='text', placeholder='First name', name='firstName', required='', autofocus='')
-     label.sr-only(for='inputLastName') Last name
-     input#inputLastName.form-control(type='text', placeholder='Last name', name='lastName', required='')
-     label.sr-only(for='inputEmail') Email address
-     input#inputEmail.form-control(type='email', placeholder='Email address', name='username', required='')
-     select.form-control(name='role', id='roleEdit')
-      option(value=1) Admin
-      option(value=2) Crew chief
-      option(value=3) Official
-      option(value=0) Guest
-     button.btn.btn-lg.btn-primary.btn-block(type='button' id='editmember') Confirm changes
+    form.form-addgame(action='api/addteam', method='post')
+     h2.form-addgame-heading Add new team
+     label.sr-only(for='inputTeamName') Team name
+     input#inputTeamName.form-control(type='text', placeholder='Team name', name='name', required='', autofocus='')
+     label.sr-only(for='inputLatitude') Latitude
+     input#inputLatitude.form-control(type='text', placeholder='Stadium Latitude', name='lat', required='')
+     label.sr-only(for='inputLongitude') Longitude
+     input#inputLongitude.form-control(type='text', placeholder='Stadium Longitude', name='lon', required='')
+     label.sr-only(for='inputStadiumName') Stadium Name
+     input#inputStadiumName.form-control(type='text', placeholder='Stadium Name', name='stadiumName', required='')
+     button.btn.btn-lg.btn-primary.btn-block(type='submit') Add team
+     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+     script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+     script(src='./js/editmembers.js')

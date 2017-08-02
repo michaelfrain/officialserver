@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Game = require('../models/game');
+var Team = require('../models/team');
 var bCrypt = require('bcrypt-nodejs');
 
 module.exports = function(passport) {
@@ -32,6 +33,12 @@ module.exports = function(passport) {
     router.get('/games', isAuthenticated, function(req, res, next) {
         Game.find({}, function(err, games) {
             res.json(games);
+        });
+    });
+    
+    router.get('/teams', isAuthenticated, function(req, res, next) {
+        Team.find({}, function(err, teams) {
+            res.json(teams);
         });
     });
     
@@ -105,6 +112,26 @@ module.exports = function(passport) {
             res.json(newGame);
         })
     });
+    
+    
+    
+    router.post('/addteam', isAdmin, function(req, res, next) {
+        var newTeam = new Team();
+        
+        newTeam.name = req.param('name');
+        newTeam.lat = req.param('lat');
+        newTeam.lon = req.param('lon');
+        newTeam.stadiumName = req.param('stadiumName');
+        
+        newTeam.save(function(err) {
+            if (err) {
+                console.log('Error saving new team: ' + err);
+                throw err;
+            }
+            console.log('New team created for: ' + newTeam.name);
+            res.json(newTeam);
+        })
+    })
 
     router.post('/login', passport.authenticate('login', {
         successRedirect: '/home',
