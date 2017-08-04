@@ -3,7 +3,7 @@ $(document).ready(function() {
         url: '/api/teams'
     }).then(function(data) {
         for(var i=0; i < data.length; i++) {
-            var newValue = i + 1;
+            var newValue = data[i]._id;
             $('#homeTeam').append('<option value='+newValue+'>'+data[i].name+'</option>');
         }
     });

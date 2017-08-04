@@ -42,6 +42,13 @@ module.exports = function(passport) {
         });
     });
     
+    router.get('/team/:teamId', isAuthenticated, function(req, res, next) {
+        Team.where({ _id: req.param('teamId') }).findOne(function (err, team) {
+            console.log(team);
+            res.json(team);
+        });
+    });
+    
     router.get('/currentuser', isAuthenticated, function(req, res, next) {
         if (req.user) {
             res.json(req.user);
@@ -93,23 +100,39 @@ module.exports = function(passport) {
         var newGame = new Game();
         
         newGame.date = req.param('date');
-        newGame.home = req.param('home');
-        newGame.visitor = req.param('visitor');
-        newGame.hScore = 0;
-        newGame.vScore = 0;
-        newGame.overtime = false;
-        newGame.totalTime = 0;
-        newGame.television = false;
-        newGame.conference = 'SCIAC';
-        newGame.officials = req.param['officials'];
-        
-        newGame.save(function(err) {
+        Team.findOne({ '_id' : req.param('home') }, function(err, team) {
             if (err) {
-                console.log('Error saving new game: ' + err);
-                throw err;
+                console.log('Could not find home team: ' + err);
+            } else if (team) {
+                newGame.home = team;
             }
-            console.log('New game created for: ' + newGame.date);
-            res.json(newGame);
+        }).then(homeTeam => {
+            Team.findOne({ '_id' : req.param('visitor') }, function(err, team) {
+                if (err) {
+                    console.log('Could not find home team: ' + err);
+                } else if (team) {
+                    newGame.visitor = team;
+                }
+            }).then(visitingTeam => {
+                newGame.home = homeTeam;
+                newGame.visitor = visitingTeam;
+                newGame.hScore = 0;
+                newGame.vScore = 0;
+                newGame.overtime = false;
+                newGame.totalTime = 0;
+                newGame.television = false;
+                newGame.conference = 'SCIAC';
+                newGame.officials = req.param['officials'];
+
+                newGame.save(function(err) {
+                    if (err) {
+                        console.log('Error saving new game: ' + err);
+                        throw err;
+                    }
+                    console.log('New game created for: ' + newGame.date);
+                    res.json(newGame);
+                })
+            });
         })
     });
     

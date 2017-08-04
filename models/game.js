@@ -1,11 +1,14 @@
 var mongoose = require('mongoose');
-var User = require('./user')
+var TeamModel = require('./team');
+var UserModel = require('./user');
+var Team = mongoose.model('Team').schema;
+var User = mongoose.model('User').schema;
 
 module.exports = mongoose.model('Game', {
     id: String,
     date: Date,
-    home: String,
-    visitor: String,
+    home: Team,
+    visitor: Team,
     hScore: Number,
     vScore: Number,
     overtime: Boolean,
@@ -13,5 +16,5 @@ module.exports = mongoose.model('Game', {
     totalTime: Number,
     television: Boolean,
     conference: String,
-    officials: [String]
+    officials: [User]
 });
