@@ -46,6 +46,7 @@ var addmember = require('./routes/addmember')(passport);
 var editmembers = require('./routes/editmembers')(passport);
 var addGame = require('./routes/addgame')(passport);
 var addTeam = require('./routes/addteam')(passport);
+var leagueSchedule = require('./routes/leagueschedule')(passport);
 app.use('/', index);
 app.use('/api', api);
 app.use('/login', login);
@@ -56,6 +57,7 @@ app.use('/addmember', addmember);
 app.use('/editmembers', editmembers);
 app.use('/addgame', addGame);
 app.use('/addteam', addTeam);
+app.use('/leagueschedule', leagueSchedule);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

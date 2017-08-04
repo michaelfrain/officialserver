@@ -11,7 +11,7 @@ $(document).ready(function() {
                 $.ajax({
                     url:'/api/team/'+visitingTeamId
                 }).then(function(visitingTeamData) {
-                    $('#allgames').append('<tr>'+'<td>'+data[i-1].date+'</td>'+'<td>'+homeTeamData.name+'</td>'+'<td>'+visitingTeamData.name+'</td>'+'<td>'+data[i-1].conference+'</td>'+'</tr>');
+                    $('#allgames').append('<tr>'+'<td>'+data[i-1].date+'</td>'+'<td>'+homeTeamData.name+'</td>'+'<td>'+visitingTeamData.name+'</td>'+'<td></td>'+'<td><a href="#">Report</a></td></tr>');
                 });
             });
         }
